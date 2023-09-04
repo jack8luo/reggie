@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Orders> implements OrderService {
 
     @Autowired
-    private ShoppingCartService shoppingCartService;
+    private ShoppingCartService shoppingcartService;
 
     @Autowired
     private UserService userService;
@@ -47,7 +47,7 @@ public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Orders> implemen
         //查询当前用户的购物车数据
         LambdaQueryWrapper<ShoppingCart> queryWrapper=new LambdaQueryWrapper<>();
         queryWrapper.eq(ShoppingCart::getUserId,currentId);
-        List<ShoppingCart> list = shoppingCartService.list(queryWrapper);
+        List<ShoppingCart> list = shoppingcartService.list(queryWrapper);
 
         if (list==null||list.size()==0){
             throw new CustomException("购物车为空，不能下单");
@@ -100,7 +100,6 @@ public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Orders> implemen
         //向订单明细表中插入多条数据
         orderDetailService.saveBatch(orderDetails);
         //清空购物车数据
-        shoppingCartService.remove(queryWrapper);
+        shoppingcartService.remove(queryWrapper);
     }
 }
-
