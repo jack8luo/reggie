@@ -2,6 +2,7 @@ package com.luohao.reggie.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  * @date 2023/6/5 16:16
  */
 @Data
-public class R<T> {//<T>是范型，泛型允许你在编写代码时使用一种抽象的方式来处理不同类型的数据，而不需要为每种类型编写重复的代码。
+public class R<T> implements Serializable {//<T>是范型，泛型允许你在编写代码时使用一种抽象的方式来处理不同类型的数据，而不需要为每种类型编写重复的代码。
 
     private Integer code; //编码：1成功，0和其它数字为失败
 
